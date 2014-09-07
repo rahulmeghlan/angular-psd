@@ -1,0 +1,74 @@
+// This file will override the layout styles used in bootstrap
+body, .container-fluid{
+  padding: 0;
+}
+
+.desc-area{
+  min-height: 470px;
+  max-height: 585px;
+  border-top: 17px solid $color-green;
+  border-bottom: 17px solid $color-grey;
+  background: url("../images/bg/desc-bg.PNG");
+}
+
+button.btn{
+  background-color: $color-orange;
+  border-color: $color-orange;
+  color: $white;
+  font-size: 22px;
+}
+
+.gutter-area{
+  background-color: $color-blue;
+  height: 115px;
+}
+
+.desc2-area{
+  background-color: $color-bg1;
+  color : $color-off-white;
+  padding: 40px 140px 130px 140px;
+  text-align: center;
+  p{
+    text-align: left;
+  }
+}
+
+.desc4-area{
+  background-color: $color-bg2;
+  padding: 100px 175px 165px 175px;
+  .header{
+    background-color: $color-head;
+    padding: 40px 70px 70px 70px;
+  }
+  .upper-circle{
+    width: 115px;
+    height: 55px;
+    position: absolute;
+    top: 33%;
+    left: 28%;
+    background: $white;
+    border-radius: 90px 90px 0 0;
+  }
+  .inner-circle{
+    background: #227c7c;
+    border-radius: 50px;
+    width: 95px;
+    height: 95px;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: $white;
+    text-align: center;
+    padding-top: 30%;
+    font-size: 18px;
+    font-weight: bold;
+    span{
+      margin-top: 50px;
+    }
+  }
+
+  .body{
+    background-color: $white;
+    padding: 70px 45px 20px 45px;
+  }
+}
+

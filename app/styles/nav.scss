@@ -1,0 +1,15 @@
+// This is the file which will override the styling of nav-bar
+
+.nav {
+  margin-right: 100px;
+  margin-top: 50px;
+  li > a{
+    padding: 2px 15px;
+  }
+  &.nav-pills {
+    > li.active > a {
+      background-color: $link-active;
+    }
+  }
+}
+
