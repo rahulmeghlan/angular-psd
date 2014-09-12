@@ -388,7 +388,30 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    }
+    },
+
+    //Deployment Tasks
+      buildcontrol: {
+          options: {
+              dir: 'dist',
+              commit: true,
+              push: true,
+              message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+          },
+          pages: {
+              options: {
+                  remote: 'git@github.com:rahulmeghlan/angular-psd.git',
+                  branch: 'gh-pages'
+              }
+          },
+          heroku: {
+              options: {
+                  remote: 'git@heroku.com:angular-psd.git',
+                  branch: 'master',
+                  tag: pkg.version
+              }
+          }
+      }
   });
 
 
