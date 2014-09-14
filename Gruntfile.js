@@ -9,6 +9,9 @@
 
 module.exports = function (grunt) {
 
+  // Load grunt-build-control task manually
+  grunt.loadNpmTasks('grunt-build-control');
+
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
@@ -26,6 +29,8 @@ module.exports = function (grunt) {
 
     // Project settings
     yeoman: appConfig,
+
+    pkg: grunt.file.readJSON('package.json'),
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -390,28 +395,6 @@ module.exports = function (grunt) {
       }
     },
 
-    //Deployment Tasks
-      buildcontrol: {
-          options: {
-              dir: 'dist',
-              commit: true,
-              push: true,
-              message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
-          },
-          pages: {
-              options: {
-                  remote: 'git@github.com:rahulmeghlan/angular-psd.git',
-                  branch: 'gh-pages'
-              }
-          },
-          heroku: {
-              options: {
-                  remote: 'git@heroku.com:angular-psd.git',
-                  branch: 'master',
-                  tag: pkg.version
-              }
-          }
-      }
   });
 
 
@@ -463,6 +446,13 @@ module.exports = function (grunt) {
   grunt.registerTask('default', [
     'newer:jshint',
     'test',
-    'build'
+    'build',
+    'buildcontrol'
   ]);
+
+/*
+    grunt.registerMultiTask('buildcontrol', function(){
+        console.log("Running buildcontrol");
+    });
+*/
 };
