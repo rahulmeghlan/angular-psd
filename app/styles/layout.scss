@@ -1,4 +1,7 @@
 // This file will override the layout styles used in bootstrap
+
+@import "variables.scss";
+
 body, .container-fluid{
   padding: 0;
 }

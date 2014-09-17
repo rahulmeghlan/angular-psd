@@ -24,6 +24,8 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  var pkg = require('./package.json');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -36,18 +38,18 @@ module.exports = function (grunt) {
     watch: {
       bower: {
         files: ['bower.json'],
-        tasks: ['wiredep']
+//        tasks: ['wiredep']
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all'],
+//        tasks: ['newer:jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
       },
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
+//        tasks: ['newer:jshint:test', 'karma']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -116,7 +118,7 @@ module.exports = function (grunt) {
     },
 
     // Make sure code styles are up to par and there are no obvious mistakes
-    jshint: {
+    /*jshint: {
       options: {
         jshintrc: '.jshintrc',
         reporter: require('jshint-stylish')
@@ -124,16 +126,16 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/scripts/{,*//*}*.js'
         ]
       },
       test: {
         options: {
           jshintrc: 'test/.jshintrc'
         },
-        src: ['test/spec/{,*/}*.js']
+        src: ['test/spec/{,*//*}*.js']
       }
-    },
+    },*/
 
     // Empties folders to start fresh
     clean: {
@@ -166,7 +168,7 @@ module.exports = function (grunt) {
     },
 
     // Automatically inject Bower components into the app
-    wiredep: {
+   /* wiredep: {
       options: {
         cwd: '<%= yeoman.app %>'
       },
@@ -175,10 +177,10 @@ module.exports = function (grunt) {
         ignorePath:  /\.\.\//
       },
       sass: {
-        src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        src: ['<%= yeoman.app %>/styles/{,*//*}*.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }
-    },
+    },*/
 
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
@@ -387,13 +389,29 @@ module.exports = function (grunt) {
       ]
     },
 
+    // Run buildControl task ofr Heroku
+    buildcontrol:{
+       options: {
+            dir: 'dist',
+            commit: true,
+            push: true,
+            message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+        },
+        heroku: {
+            options: {
+                remote: 'git@heroku.com:angular-psd.git',
+                branch: 'master',
+                tag: pkg.version
+            }
+        }
+    }
     // Test settings
-    karma: {
+/*    karma: {
       unit: {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    },
+    }*/
 
   });
 
@@ -405,7 +423,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'wiredep',
+//      'wiredep',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -423,12 +441,12 @@ module.exports = function (grunt) {
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    'karma'
+//    'karma'
   ]);
 
   grunt.registerTask('build', [
     'clean:dist',
-    'wiredep',
+//    'wiredep',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
@@ -444,10 +462,10 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'newer:jshint',
+//    'newer:jshint',
     'test',
     'build',
-    'buildcontrol'
+//    'buildcontrol'
   ]);
 
 /*
