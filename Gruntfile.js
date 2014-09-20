@@ -400,7 +400,7 @@ module.exports = function (grunt) {
         heroku: {
             options: {
                 remote: 'git@heroku.com:angular-psd1.git',
-                branch: 'heroku'
+                branch: 'master'
             }
         }
     }
